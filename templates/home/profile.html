@@ -1,0 +1,45 @@
+{% extends 'home/basic.html' %}
+{% block title %}Profile {% endblock title%}
+{% block css %}
+<style>
+ *{ box-sizing: border-box;  margin:0; padding:0;  }
+.services{color: red; margin-top:2%; text-align: center; text-decoration: underline; font-size: 3vw;}
+.submit{font-size:1.5vw;}
+.inputline{width:80%; font-size:1vw;}
+
+@media screen and (max-width: 600px){
+    .inputline{font-size:2.9vw;}
+ *{ box-sizing: border-box;  margin:0; padding:0;  }
+  .services{font-size: 4vw; margin-top:10%;}
+  .submit{font-size:2.5vw;}
+}
+</style>
+{% endblock css %}
+{% block body %}
+<div class="services"><strong>Change your Details Here..</strong> </div>
+<div class="container mt-5">
+    <form action="/login/profile/" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+        <div class="form-group">
+            <label for="exampleFormControlInput1">Username :</label>
+            <input type="text" name="username" class="form-control inputline" id="exampleFormControlInput1" value="{{userrr.username}}">
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">First Name :</label>
+            <input type="text" name="firstname" class="form-control inputline" id="exampleFormControlInput1" value="{{userrr.first_name}}">
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Last Name : </label>
+            <input type="text" name="lastname" class="form-control inputline" id="exampleFormControlInput1" value="{{userrr.last_name}}">
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Email : </label>
+            <input type="email" name="email" class="form-control inputline" id="exampleFormControlInput1" value="{{userrr.email}}">
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Change Password : </label>
+            <input type="password" name="password" class="form-control inputline" id="exampleFormControlInput1" placeholder="New Password length must be grater then 8 characters ">
+         </div>
+        <button class="mt-5 submit btn btn-primary btn-lg">Submit</button>
+      </form >
+</div>
+{% endblock body %}

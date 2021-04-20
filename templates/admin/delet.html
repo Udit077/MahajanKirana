@@ -1,0 +1,64 @@
+{% extends 'admin/basic.html' %}
+{% block title %}Add Product {% endblock title %}
+{% block css %}
+<style>
+     #myUL{ display: none; list-style-type: none; padding: 0;  width:800px; margin-top: 3px; }
+  #myUL li a{ border: 1px solid #ddd;  margin-top: -1px; background-color: #f6f6f6; padding: 12px; text-decoration: none; font-size: 18px;  color: black; display: block}
+  #myUL li a:hover:not(.header) { background-color:gray;}
+.services{font-size: 80px; text-align: center; color: red; font-family: cursive; text-decoration: underline;}
+.container{margin-left: 500px;}
+.d{text-align: center; font-size: 30px;}
+@media screen and (max-width:1500px){
+       .services{font-size: 30px;}
+       .container{margin-left: 100px;}
+       #myUL{width:300px; margin-left: 50px;} }
+   </style>
+{% endblock css %}
+{% block body %}
+<div class="services">Delete Product</div>
+<div class=" d" >Select one of the product to delete ... </div>
+<div class="container mt-5">
+    <form action="/Admin/Delete/" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+        <div class="form-group">
+            <label for="inputState" >Search Product to delete : </label>
+            <input class="form-control" name="p" type="search" id="myInput" onkeyup="myFunction()" placeholder="Search your product here"  aria-label="Search">           
+            <ul id="myUL">
+                {% for i in sab %}
+                <li>{{i.Name}}</li>
+                {% endfor %}
+              </ul> 
+        </div>
+        <button class="mt-5 btn btn-primary btn-lg">Submit</button>
+      </form>
+</div>
+{% endblock body %}
+{% block scr %}
+<script>
+    function myFunction() {
+    var input, filter, ul, li, a, i;
+        input = document.getElementById("myInput");
+        ul = document.getElementById("myUL");
+        filter = input.value.toUpperCase();
+        // if the input is empty hide the list
+        if(filter.trim().length < 1) {
+            ul.style.display = "none";
+            document.getElementById("desh").style.zIndex="9";
+             return false;
+        } else {
+            ul.style.display = "block";
+            ul.style.position = "absolute";
+            ul.style.zIndex = "9";
+        }
+      li = ul.getElementsByTagName("li");
+        for (i = 0; i < li.length; i++) {
+            a = li[i].getElementsByTagName("a")[0];
+    
+            // This is when you want to find words that contain the search string
+         if (a.innerHTML.toUpperCase().indexOf(filter) > -1) { 
+            li[i].style.display = "";
+         } else {
+            li[i].style.display = "none";
+        } 
+      }
+  }</script>
+ {% endblock scr %}  

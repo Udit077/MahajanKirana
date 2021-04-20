@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>MahajanKirana.Com</title>
+
+    <style>
+    *{ box-sizing: border-box;  margin:0; padding:0;  }
+     body{
+       background: url("/media/2.jpg") center center fixed;
+       background-size: 100% 100%;
+     }
+     .welcome{
+      color: rgba(255, 255, 0, 0.788);
+      font-size: 2.4vw;
+      text-align: center;
+      text-decoration: underline;
+     }
+     .message{font-size: 30px; font-family:'Times New Roman', Times, serif;}
+     .sign{
+      font-size: 2vw;
+      font-family:Georgia, 'Times New Roman', Times, serif ;
+      margin-left: 18%;
+      text-align: center;
+      color: rgba(255, 255, 0, 0.788);
+      text-decoration: underline;
+    }
+    .lsf{
+      margin-top: 1%;
+    }
+    span:hover{
+      color: rgb(255, 123, 0);
+    }
+    .welcome:hover{
+      color: rgb(251, 255, 0);
+    }
+    .btn{
+    margin-top: 1% ;
+    margin-left: 2%;
+    font-size: 1.5vw;
+    color: yellow;
+    display: block;
+    height: 10%;}
+@media only screen and (max-width: 800px){ .btn{font-size:2vw;}}
+     @media only screen and (max-width: 500px){
+        body{
+           background-position: center center;
+           background-size: cover;
+           background-repeat: no-repeat;
+           background-attachment: fixed;
+           height:750px;
+           width:100%;
+     }
+      .message{font-size: 15px; font-family:'Times New Roman', Times, serif;}
+      .welcome{
+        font-size: 6vw;
+      }
+      .sign{
+        font-size: 4.5vw;
+        margin-left: 10%;
+      }
+
+      .btn{
+        font-size: 3vw ;
+      }
+    }
+      </style>
+  </head>
+<!-- background size is used to make responsive -->
+
+<body>
+    {% if messages %}
+    {% for message in messages %}
+    <div>
+      <div class="message alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+        <strong>Message: </strong>{{message}}.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<!-- Button trigger modal -->
+<div class="sticky-top">
+<div class="welcome"><strong>महाजन किराणा में आपका स्वागत है |</strong> </div>
+
+    <!-- Button trigger modal -->
+<div class="lsf">
+ <a class="links" data-toggle="modal" data-target="#exampleModalCenter">
+   <span class="sign"> Signup </span>
+  </a>
+<a class="links" data-toggle="modal"  data-target="#exampleModalCenter2">
+   <span class="sign">Forgot Password </span>
+  </a>
+<a class="links" data-toggle="modal" data-target="#exampleModalCenter3">
+   <span class="sign">Login </span>
+   </a>
+</div>
+</div>
+  <!--Sign up  Modal -->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">New user! Create your account here..</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+         <form action="/signup/" method="POST">{% csrf_token %}
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Username</label>
+            <input type="text" name="name" class="form-control" id="aexampleFormControlInput1" placeholder="Enter a unique username" required>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Email address</label>
+            <input type="email" name="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Password</label>
+            <input type="password" name="password" class="form-control" id="efxampleFormControlInput1" required placeholder="must contain atleast 8 character">
+          </div></div>
+        <div class="modal-footer" >
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Signup</button>
+        </div>
+      </div>
+    </div>
+  </div> </form>
+<!-- ending sign up -->
+
+<!-- starting forgot modal -->
+<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Fill the details to get new password on mail....</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <form action="/forgot/" method="POST">{% csrf_token %}
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Username</label>
+          <input type="text" name="name" class="form-control" id="aexampleFormControlInput1" placeholder="Enter a unique username" required>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Email address</label>
+          <input type="email" name="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" required>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Forgot Password</button>
+      </div>
+    </div>
+  </div>
+</div></form>
+<!-- ending forgot modal -->
+
+<!-- starting login modal -->
+<div class="modal fade" id="exampleModalCenter3" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Login to Mahajan Kirana</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <form action="/login/" method="POST">{% csrf_token %}
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Username</label>
+          <input type="text" name="name" class="form-control" id="aexampleFormControlInput1" placeholder="Enter a unique username" required>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Password</label>
+          <input type="password" name="password" class="form-control" id="exampleFormControlInput1" placeholder="" required>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Login</button>
+      </div>
+    </div>
+  </div>
+</div></form>
+<!-- ending login modal -->
+</body>
+</html>

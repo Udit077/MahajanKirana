@@ -1,0 +1,67 @@
+{% extends 'admin/basic.html' %}
+{% block title %} Latest {% endblock title %}
+{% block css %}
+   <style>
+  @media screen and (max-width: 1200px){
+      .i{margin-left: 50px;}
+  }
+
+   </style>
+{% endblock css %}
+{% block body %}
+<div class="form container">
+    <form action="/Admin/latest/" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+        <div class="form-group mt-5">
+            <label for="inputState">Type : </label>
+            <select name="type" id="inputState" class="form-control">
+              <option selected>Today's Blockbuster</option>
+              <option >Latest TV Serials</option>
+              <option >Best Cartoon forever</option>
+            </select>
+        </div> <hr>
+
+        <div class="form-group i">
+          <label for="pwd">1st Search :</label>
+          <input type="text" name="1u" class="form-control" placeholder="Insert the link or url or Search" id="pwd">
+        </div>
+        <div class="form-group i">
+              <label for="exampleFormControlFile1">Insert Image</label>
+              <input type="file" name="1i" class="form-control-file" id="exampleFormControlFile1">
+        </div>
+
+        <div class="form-group i">
+                <label for="pwd">2nd Search :</label>
+                <input type="text" name="2u" class="form-control" placeholder="Insert the link or url or Search " id="pwd">
+        </div>
+        <div class="form-group i">
+                    <label for="exampleFormControlFile1">Insert Image</label>
+                    <input type="file" name="2i" class="form-control-file" id="exampleFormControlFile1">
+                  </div>
+        <div class="form-group i">
+                    <label for="pwd">3rd Search :</label>
+                    <input type="text" name="3u" class="form-control" placeholder="Insert the link or url or Search " id="pwd">
+        </div>
+        <div class="form-group i">
+                        <label for="exampleFormControlFile1">Insert Imaget</label>
+                        <input name="3i" type="file" class="form-control-file" id="exampleFormControlFile1">
+        </div>
+        <div class="form-group i">
+          <label for="pwd">4th Search :</label>
+          <input type="text" name="4u" class="form-control" placeholder="Insert the link or url or Search" id="pwd">
+        </div>
+        <div class="form-group i">
+              <label for="exampleFormControlFile1">Insert Image</label>
+              <input type="file" name="4i" class="form-control-file" id="exampleFormControlFile1">
+        </div>
+        <div class="form-group i"></div>
+          <label for="pwd">5th URL :</label>
+          <input type="url" name="5u" class="form-control" placeholder="Insert the link or url or Search" id="pwd">
+        </div>
+        <div class="form-group i">
+              <label for="exampleFormControlFile1">Insert Image</label>
+              <input type="file" name="5i" class="form-control-file" id="exampleFormControlFile1">
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+      </form>
+</div>
+{% endblock body %}

@@ -1,0 +1,68 @@
+{% extends 'home/basic.html' %}
+{% block title %}Upload{% endblock title %}
+{% block css %}
+<style>
+ .Upload{color: red; font-size: 2.3vw; text-align: center; text-decoration: underline; margin-top: 5%;}
+ .form-control{width:70%;}
+ @media screen and (max-width: 600px){
+ .Upload{ font-size:3.2vw;}
+
+ }
+</style>
+{% endblock css %}
+
+{% block body %}
+<div class="Upload">Upload a scanned copy of your List of Items Here.....</div>
+<div class="container mt-5">
+<form action="/login/upload/" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+    <div class="form-group row">
+        <label for="colFormLabel" class="col-sm-3 col-form-label">Name :</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" name="name" id="colFormLadbel" placeholder="Enter your Name"   required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="colFormLabel" class="col-sm-3 col-form-label">Contact No. :</label>
+        <div class="col-sm-9">
+          <input type="number" class="form-control" name="contact" id="colFormLabel" placeholder="1111111111" required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="colFormLabel" class="col-sm-3 col-form-label">Address :</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" name="address" id="colFormLabel" placeholder="House no./street no. area_name" required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="colFormLabel" class="col-sm-3 col-form-label">City :</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" name="city" id="colFormLabel" placeholder="City name" required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputState" class="col-sm-3 col-form-label">State : </label>
+        <div class="col-sm-9">
+        <select id="inputState" name="state" class="form-control">
+          <option selected>Choose...</option>
+                  <option>Madhya Pradesh</option>  <option>Uttar Pradesh</option> <option>Andra Pradesh</option>
+                  <option>Haryana</option> <option>Jammu & Kashmir</option>  <option>Assam</option>  <option>West Bangal</option>
+                  <option>Telangana</option> <option>Kerala</option> <option>Goa</option> <option>Gujrat</option>
+                  <option>Rajasthan</option> <option>Delhi</option> <option>Chhattisgarh</option> <option>Bihar</option>
+                  <option>Arunanachal Pradesh</option> <option>Maharashtra</option> <option>Tamil Nadu</option>
+        </select>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="colFormLabel" class="col-sm-3 col-form-label">Pin code :</label>
+        <div class="col-sm-9">
+          <input type="number" class="form-control" id="colFormLabel" name="pin" required placeholder="Enter your area pin">
+        </div>
+      </div>
+<div class="form-group" style='margin-left: 45%;'>
+    <label for="exampleFormControlFile1" class="Upload mt-5" >Upload List</label>
+    <input type="file" name="imglist" class="form-control-file" id="exampleFormControlFile1">
+</div>
+<button class="mt-5 btn btn-primary btn-lg">Submit</button>
+</form>
+</div>
+{% endblock body %}

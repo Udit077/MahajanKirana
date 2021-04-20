@@ -1,0 +1,49 @@
+{% extends 'admin/basic.html' %}
+{% block title %}Add Product {% endblock title %}
+{% block css %}
+<style>
+  .h{color: red; font-size: 2vw; text-align: center; margin-top: 10px;}
+   
+</style>
+{% endblock css %} 
+
+{% block body %}
+<div class="h">Alter the details of the any product</div>
+
+<div class="container mt-5">
+    <form action="/Admin/alter/" method="POST"> {% csrf_token %}
+        <div class="form-group">
+            <label for="exampleFormControlInput1">Name</label>
+            <input type="text"  name="name" class="form-control" id="exampleFormControlInput1" placeholder="Name of Product" >
+          </div>
+          <!-- <div class="form-group">
+            <label for="exampleFormControlInput1">New Name</label>
+            <input type="text" name="cname" class="form-control" id="exampleFormControlInput1" placeholder="New Name of Product">
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">New Othername</label>
+            <input type="text" name="cother" class="form-control" id="exampleFormControlInput1" placeholder="New Othername of Product">
+          </div> -->
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Price : </label>
+            <input type="number" name="price" class="form-control" id="exampleFormControlInput1" value="0" placeholder="price per unit">
+          </div>
+          <div class="form-group">
+            <label for="inputState">Status : </label>
+            <select name="status" id="inputState" class="form-control">
+              <option selected>Available</option>
+              <option>Unavailable</option>
+            </select>
+          </div>
+        <button class="mt-5 btn btn-primary btn-lg">Submit</button>
+      </form >
+</div>
+<div>
+  <ul>
+  {% for i in sab %} 
+  <li>{{i}}</li>
+  {% endfor %}
+  </ul>
+</div>
+
+{% endblock body %}

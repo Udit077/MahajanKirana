@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Title - {% block title %}{% endblock title %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- style -->
+<style>
+ *{ box-sizing: border-box;  margin:0; padding:0;  }
+  .message{font-size: 30px; font-family: 'Times New Roman', Times, serif;}
+  .bor{border-right: 3px solid rgba(204, 204, 204, 0.87);}
+  .ou{font-size: 1.6vw; text-decoration: underline ; color:rgba(230, 222, 222, 0.781); }
+  .in{font-size: 1.6vw; color:  rgb(255, 255, 255);}
+  #myUL{overflow-y: auto; height: 550px; display: none; font-size:1vw; list-style-type: none; padding: 0; margin-left: 33%; width:40%;margin-top: 3%; }
+  #myUL li a{ border: 1px solid #ddd;  margin-top: -1px; background-color: #f6f6f6; padding: 12px; text-decoration: none; color: black; display: block}
+  #myUL li a:hover:not(.header) { background-color:gray;}
+    *{ margin:0; padding:0; box-sizing: border-box;}
+    .shop{  display: flex; background-color: blue; width: 100%; }
+    .logo{ height:auto; width: 200px; position: relative; animation: mymove 3s ; margin-left: 10px;}
+    .line{font-size: 8vw;  color: yellow; font-family: cursive; margin-left: 40px;}
+
+    .w3-bar-item{font-size:1.3vw; }
+   .search{width:40%; font-size: 1vw; margin-left:30%; margin-right:30%; margin-top: 0.5%; margin-bottom: 0.5%;}
+   .menubtn{font-size: 1.7vw; width:4%; margin-bottom: 0.5%; margin-top: 0.5%; margin-left: 10px;}
+   @keyframes mymove {
+  from {right: 0px;}
+  50%{opacity: 0.5;}
+  to {right: 1300px;}
+}
+   /*<!--making responsive here-->*/
+  @media screen and (max-width: 1000px){ .menubtn{font-size: 1.5vw;}   .logo{ height:auto ; width:100px;} }
+     @media screen and (max-width: 800px){
+         #myUL{ display: none; font-size:1.5vw; list-style-type: none; padding: 0; margin-left: 33%; width:40%;margin-top: 3px; }
+         .w3-bar-item{font-size:1.6vw;}
+         .menubtn{font-size: 1.5vw;}
+         .search{font-size:1.5vw;} }
+    @media screen and (max-width: 600px){
+.menubtn{font-size: 1.8vw; width:5%;}
+      .message{font-size: 15px; font-family: 'Times New Roman', Times, serif;}
+      .ou{font-size: 2.6vw;}
+  .in{font-size: 2.5vw; }
+     #myUL{ display: none; font-size:3.5vw; list-style-type: none; padding: 0; margin-left: 20%; width:70%;margin-top: 3px; }
+  #myUL li a{ border: 1px solid #ddd;  margin-top: -1px; background-color: #f6f6f6; padding: 12px; text-decoration: none; color: black; display: block}
+       .shop{  width:100%;  }
+      .line{ margin-left: 5%;}
+      .logo{ height:auto ; width:60px; animation:mymove 5s ; }
+      .form-control{margin-left: 25px;}
+      .navbar-collapse{margin-left: 0px; display: flex; margin-top: 0px;}
+      .btn-outline-warning{font-size: 13px;height: 32px;  margin-left: 10px; font-family: cursive;}
+      .lun{width: 300px; margin-top: 0px;}
+      .w3-teal{font-size: 15px;height: 32px;}
+      .navbar-toggler{margin-left: 520px; }
+      @keyframes mymove {
+  from {right: 0px;}
+  50%{opacity: 0.5;}
+  to {right: 600px;}
+    } }
+    @media screen and (max-width: 500px) {
+        .menubtn{font-size: 4vw; height: 30px; width:10%; margin-top: 4px; margin-bottom: 4px;}
+  .search{width:70%; font-size: 2.9vw; margin-left:9%; margin-right:9%; margin-top: 4px; margin-bottom: 4px;}
+        .in{font-size:2.2vw;}
+        #myUL{margin-top: 10%;}
+         .w3-bar-item{font-size:3vw; }
+        .line{font-size: 9vw; margin-left:0px; }
+        .logo{ height:60px ; width:80px; animation: mymove 3s ; margin-left:2px;}
+    @keyframes mymove {
+  from {right: 0px;}
+  50%{opacity: 0.5;}
+  to {right: 600px;}
+    } }
+
+ </style>{% block css %}{% endblock css %}
+
+ <!-- script for search bar  -->
+ <script>
+  function myFunction() {
+  var input, filter, ul, li, a, i;
+      input = document.getElementById("myInput");
+      ul = document.getElementById("myUL");
+      filter = input.value.toUpperCase();
+      // if the input is empty hide the list
+      if(filter.trim().length < 1) {
+          ul.style.display = "none";
+          document.getElementById("desh").style.zIndex="9";
+           return false;
+      } else {
+          ul.style.display = "block";
+          ul.style.position = "absolute";
+          ul.style.zIndex = "9";
+      }
+    li = ul.getElementsByTagName("li");
+      for (i = 0; i < li.length; i++) {
+          a = li[i].getElementsByTagName("a")[0];
+
+          // This is when you want to find words that contain the search string
+       if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+          li[i].style.display = "";
+       } else {
+          li[i].style.display = "none";
+      }
+    }
+}</script>
+
+</head>
+
+  <body>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    {% if messages %}
+      {% for message in messages %}
+      <div> <div class="message alert alert-{{message.tags}} alert-dismissible fade show" role="alert"> <strong>Message : </strong>{{message}}.
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button> </div> </div> {% endfor %} {% endif %}
+
+   <div class="container-fluid shop">
+        <div class="line">MahajanKirana.Com</div>
+<img src="/media/images.png" class="logo" alt="">
+      </div>
+
+    <!-- horizantal nav  -->
+      <div class="sticky-top" style="z-index: 3; background-color: yellow ">
+       <div style="display:flex;">
+        <button class="menubtn btn-warning" data-toggle="tooltip" data-placement="right" title="Open menu bar" onclick="openLeftMenu()">&#9776;</button>
+              <input class="form-control search" type="search" id="myInput" onkeyup="myFunction()" placeholder="Search your product here in Hindi or english"  aria-label="Search">
+              <ul id="myUL">
+                {% for i in sab %}
+                <li><a class="product" href="/login/product/subcatagory/{{i.Name|cut:' '}}">{{i.Name}}</a></li>
+                {% endfor %}
+              </ul>
+        </div>
+      </div>
+
+
+
+<!-- vertical nav  -->
+<div class="w3-sidebar w3-bar-block w3-card w3-animate-left sticky-top w3-black" style="display:none;width: 35%; position: absolute; z-index: 3;" id="leftMenu">
+  <button onclick="closeLeftMenu()" class="w3-bar-item  w3-button">Close &times;</button>
+  <div class="w3-dropdown-hover">
+    <button class="w3-button w3-bar-item"><span class="material-icons" style="font-size:30px;">account_circle </span> {{us}}</button>
+     <div class="w3-dropdown-content w3-bar-block">
+       <a href="/login/logout/" class="w3-bar-item w3-button">Logout</a>
+       <a href="/login/profile/" class="w3-bar-item w3-button">MyProfile</a>
+     </div>
+       </div> <hr>
+  <a href="/login" class="w3-bar-item w3-button fa fa-home"> .Home</a>
+  <!-- <a href="/login/contact/" class="w3-bar-item w3-button fa fa-envelope">. Contact us or raise complaint</a> -->
+  <a href="/login/tv/0" class="w3-bar-item w3-button">Entertainment on TV</a>
+  <a href="/login/notification/" class="w3-bar-item w3-button">Notifications <span class="badge badge-light" style="float: right;">{{total}}</span></a>
+ <a href="/login/bucket/" class="w3-bar-item w3-button">Shopping Bucket <span class="badge badge-light" style="float: right;">{{no_order}}</span></a>
+  <a href="/login/about/" class="w3-bar-item w3-button">About Us</a>
+  <a href="/login/upload/" class="w3-bar-item w3-button">Upload a List</a>
+  <hr>
+  {% for k,v in param.items %}
+ <div class="w3-dropdown-hover">
+ <button class="w3-button w3-bar-item">{{k}} <i class="fa fa-caret-down"></i></button>
+  <div class="w3-dropdown-content w3-bar-block">
+    <div style="height:300px; overflow-y:auto;">
+    {% for i in v %}
+    <a href="/login/product/subcatagory/{{i|cut:' '}}" class="w3-bar-item w3-button">{{i}}</a>
+{% endfor %}
+<a href="/login/product/{{k|cut:' '}}" class="w3-bar-item w3-button">More items..</a>
+ </div>
+  </div>
+</div> 
+ {% endfor %}
+<div style="margin-bottom: 250px;"></div>
+</div>
+<div class="w3-overlay w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
+
+<div>
+<!-- vertical nav script -->
+<script>
+function openLeftMenu() {
+  document.getElementById("leftMenu").style.display = "block";
+  document.getElementById("myOverlay").style.display = "block";
+}
+
+function closeLeftMenu() {
+  document.getElementById("leftMenu").style.display = "none";
+  document.getElementById("myOverlay").style.display = "none";
+}
+</script>
+<!-- <ul id="myUL">
+  {% for i in sab %}
+  <li><a class="product" href="/login/product/subcatagory/{{i.Name|cut:' '}}">{{i.Name}}</a></li>
+  {% endfor %}
+</ul> -->
+{% block body %}
+  {% endblock body %}
+
+    <div class="row container-fluid mb-0 mt-5" style="background-color:rgba(0, 0, 0, 0.726);" >
+      <div class="col-4 col-sm-4 col-md-4 col-lg-4 mt-4 mb-3 bor">
+          <div class="ou" >Shop Address : </div>
+       <div class="in">Mahajan Kirana, <br>
+           Ward No. 3 <br>
+          Bhagat Singh Marg,
+          Maheshwar <br>Dist.Khanrgone (M.P) – 451224 <br>
+          proprietor - Kamal Ramnarayan Mahajan</div>
+      </div>
+      <div class="col-4 col-sm-4 col-md-4 col-lg-4 bor mt-4 mb-3" style="text-align: center;">
+        <div class="ou">Usefull Links</div>
+        <div class="in c" >FAQ</div>
+        <div class="in c">T&C</div>
+        <div class="in c">Terms Of Order</div>
+        <div class="in c">Shipping</div>
+        <div class="in c">Cancalletion</div>
+      </div>
+      <div class="col-4 col-sm-4 col-md-4 col-lg-4 mt-4 mb-3" style="margin-top: 30px;">
+            <div class="in">For any query, complaint you can call us on +919685607577
+              or you can send mail on mahajankiranamhs@gmail.com
+            </div>
+      </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+{% extends 'admin/basic.html' %}
+{% block title %}Add Product {% endblock title %}
+{% block css %}
+<style>
+.services{font-size: 80px; text-align: center; color: red; font-family: cursive; text-decoration: underline;}
+.container{margin-left: 500px;}
+@media screen and (max-width:1500px){
+       .services{font-size: 30px;}
+       .container{margin-left: 100px;}}
+   </style>
+{% endblock css %}
+{% block body %}
+<div class="services">Add Product</div>
+<div class="container mt-5">
+    <form action="/Admin/addp/" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+        <div class="form-group">
+            <label for="inputState">Category : </label>
+            <select name="cat" id="inputState" class="form-control">
+                {% for i in allcat %}
+              <option>{{i}}</option>
+              {% endfor %}
+            </select>
+          </div>
+        <div class="form-group">
+            <label for="exampleFormControlInput1">Name</label>
+            <input type="text" name="name" class="form-control" id="exampleFormControlInput1" placeholder="Enter Name of Product">
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Other Name</label>
+            <input type="text" name="oname" class="form-control" id="exampleFormControlInput1" placeholder="Enter other of the product">
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Price : </label>
+            <input type="number" name="price" class="form-control" id="exampleFormControlInput1" placeholder="price per unit">
+          </div>
+          <div class="form-group">
+            <label for="inputState">Quantity : </label>
+            <select name="quantity" id="inputState" class="form-control">
+              <option selected>ltr</option>
+              <option>kg</option>
+              <option>pcs</option>
+            </select>
+          </div>
+          
+        <div class="form-group">
+          <label for="exampleFormControlFile1">Image :</label>
+          <input type="file" name="image" class="form-control-file" id="exampleFormControlFile1" placeholder="insert image of the product">
+        </div>
+        <button class="mt-5 btn btn-primary btn-lg">Submit</button>
+      </form >
+</div>
+{% endblock body %}

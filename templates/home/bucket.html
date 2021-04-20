@@ -1,0 +1,100 @@
+{% extends "home/basic.html" %}
+{% block title %}MahajanKiranaBucket{% endblock title%}
+{% block css %}
+<style>
+.services{text-align: center; text-decoration: underline;  font-size: 2vw; color: red; font-family:Georgia, 'Times New Roman', Times, serif;}
+.table{width: 90%; margin-left: 5%;}
+th,td{border: 1px solid black;}
+.form-control{width:70%;}
+@media screen and (max-width: 600px){
+    th, td{font-size:2.5vw;}
+    .services{font-size: 4vw;}
+.table{width: 99%;margin-left: 1px;}
+}
+</style>
+{% endblock css %}
+{% block body %}
+<div class="services mt-4">Your MahajanKiranaBucket Contents following items ..</div>
+<div class="w3-responsive table mt-5 ">
+<table class="w3-table-all w3-hoverable">
+      <thead>
+        <tr style="background-color: rgba(2, 153, 2, 0.863);">
+          <th>Prdouct Name</th>
+          <th>No. of kg </th>
+          <!-- <th>No. of 5kg pack</th>
+          <th>No. of 15kg pack</th> -->
+          <th>No. of pcs</th>
+          <th>Price</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <!-- allorder is a dict -->
+          {% for k,v in allorder.items %}  
+          <tr class="w3-hover-green" style="background-color: rgba(0, 128, 0, 0.507);">
+           <td>{{k}}</td>
+          {% for j in v %}
+           <td>{{j}}</td>
+          {% endfor %}
+          <td><a href='/login/product/subcatagory/{{k|cut:" "}}' data-toggle="tooltip" data-placement="right" title="Change quantity of product">Change</a>/<a href='/login/product/subcatagory/delete/{{k|cut:" "}}' data-toggle="tooltip" data-placement="right" title="Delete product from bucket">Delete</a></td>
+        </tr>
+          {% endfor %}
+    </table>
+  </div>
+{% if no_order > 0 %}
+  <div class="services mt-5">Fill the below form for delivery</div>
+  <div class="container mt-5 mb-5">
+    <form action="/login/bill/" method="POST"> {% csrf_token %}
+      <div class="form-group row">
+        <label for="colFormLabel" class="col-sm-3 col-form-label">Name :</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" name="name" id="colFormLadbel" placeholder="Enter your Name"   required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="colFormLabel" class="col-sm-3 col-form-label">Email :</label>
+        <div class="col-sm-9">
+          <input type="email" class="form-control" name="email" id="colFormLabel" placeholder="name@gmail.com" required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="colFormLabel" class="col-sm-3 col-form-label">Contact No. :</label>
+        <div class="col-sm-9">
+          <input type="number" class="form-control" name="contact" id="colFormLabel" placeholder="1111111111" required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="colFormLabel" class="col-sm-3 col-form-label">Address :</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" name="address" id="colFormLabel" placeholder="House no./street no. area_name" required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="colFormLabel" class="col-sm-3 col-form-label">City :</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" name="city" id="colFormLabel" placeholder="City name" required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputState" class="col-sm-3 col-form-label">State : </label>
+        <div class="col-sm-9">
+        <select id="inputState" name="state" class="form-control">
+          <option selected>Choose...</option>
+                  <option>Madhya Pradesh</option>  <option>Uttar Pradesh</option> <option>Andra Pradesh</option>
+                  <option>Haryana</option> <option>Jammu & Kashmir</option>  <option>Assam</option>  <option>West Bangal</option>
+                  <option>Telangana</option> <option>Kerala</option> <option>Goa</option> <option>Gujrat</option>
+                  <option>Rajasthan</option> <option>Delhi</option> <option>Chhattisgarh</option> <option>Bihar</option>
+                  <option>Arunanachal Pradesh</option> <option>Maharashtra</option> <option>Tamil Nadu</option>
+        </select>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="colFormLabel" class="col-sm-3 col-form-label">Pin code :</label>
+        <div class="col-sm-9">
+          <input type="number" class="form-control" id="colFormLabel" name="pin" required placeholder="Enter your area pin">
+        </div>
+      </div>
+      <button type="submit"  class="btn btn-primary">See bill</button>
+    </form>
+  </div>
+{% endif %}
+{% endblock body %}

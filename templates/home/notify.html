@@ -1,0 +1,45 @@
+{% extends "home/basic.html" %}
+{% block title %}Notifications {% endblock title %}
+
+{% block css %}
+<style>
+ .noti{margin-top: 10px; text-align: center; font-size: 50px; color: red; font-family: cursive; text-decoration: underline;}
+  .tit{font-size: 30px;}
+  .con{font-size: 25px;}
+  .date{font-size: 18px;}
+ @media screen and (max-width:1200px) {
+     .noti{font-size: 30px;}
+     .tit{font-size: 20px;}
+     .con{font-size: 15px;}
+     .date{font-size: 15px;}
+ }
+</style>
+{% endblock css %}
+
+{% block body %}
+ <div class="noti">These are Notifications list .. </div> <hr>
+
+
+ {% if allnot|length > 0 %}  
+     {% if len > 0 %}<div class="noti mt-4" style="color: orange;" >New</div> {% endif %}
+      <div class="container">
+      {% for i in allnot %}
+        {% if forloop.counter0 == len %}
+        <div class="noti mt-4" style="color: orange;">Old</div>
+        {% endif %}
+        <div class="card mt-5">
+          <div class="card-header tit" >{{i.Title}}</div>
+          <div class="card-body" >
+            <h5 class="card-title con" style="color: blue">{{i.Content}}</h5>
+            <h5 class="card-title date mt-5" ><strong>Starts from </strong> 12:00 AM {{i.From}}    <strong>End on :</strong> 12:00 AM {{i.To}} </h5>
+            <a href="/login" class="btn btn-primary" style="float: right;">Go for it</a>
+          </div>
+        </div>
+      {% endfor %}
+      </div>
+{% else %}
+      <div class="noti" style="color: orange;">OOP!!! There is no Notifications yet ... </div>
+{% endif %}
+
+
+{% endblock body %}

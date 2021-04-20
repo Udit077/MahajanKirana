@@ -1,0 +1,102 @@
+{% extends "home/basic.html" %}
+{% block title %}Bill{% endblock title %}
+{% block css %}
+<style>
+.h{font-size:2vw; text-align: center; text-decoration: underline; font-family: Georgia, 'Times New Roman', Times, serif;}
+    .content{font-size:1.3vw; font-family: Georgia, 'Times New Roman', Times, serif; border-right: 1px solid black;border-bottom: 1px solid black;}
+     th,td{border:1px solid black; font-size:1vw;}
+  .row{width: 100%; margin-left: 1px;}
+  .main{margin-left:5%; width: 90%;}
+.shri{font-size: 2.4vw; text-align: center; text-decoration: underline; }
+.name{font-size: 2vw; text-align: center; text-decoration: underline; font-family: Georgia, 'Times New Roman', Times, serif;}
+.free{font-size:1.5vw;}
+.t, .total{font-size:1vw; }
+.total{margin-left:50%;}
+@media screen  and (max-width: 1000px){
+.content{font-size:1.8vw; font-family: Georgia, 'Times New Roman', Times, serif; border-right: 1px solid black;border-bottom: 1px solid black;}
+     th,td{border:1px solid black; font-size:1.6vw;}
+     .t, .total{font-size:1.6vw; }
+}
+@media screen  and (max-width: 600px){
+    .t, .total{font-size:3vw; }
+     th,td{border:1px solid black; font-size:1.7vw;}
+    .free{font-size:2vw;}
+    .content{font-size:5vw;}
+    .h{font-size:3vw;}
+  .main{margin-left: 0px; width:100% ;}
+.shri{font-size: 3vw; }
+.name{font-size: 20px;}
+.col-sm-6,.col-sm-7,.col-sm-5,.col-lg-3,.th{font-size:12px; }
+}
+</style>
+{% endblock css %}
+
+{% block body %}
+<div style="color: red;" class="h mt-3 mb-4">Your Bill Reciept</div>
+  <div class="main" style="border: 1px solid black; background-color:rgba(0, 0, 255, 0.233);">
+     <div class="shri" style="color: blue;">|| श्री गणेशाय नमः ||</div>
+     <div class="name mb-3" style="color: blue;">MahajanKirana.Com Bill Reciept</div>
+     <div class="row" style="border-top: 1px solid black;">
+        <div class="col-sm-6 col-md-6 col-lg-6 content">Address : Ward No. 3 Bhagat Singh Marg, Maheshwar</div>
+        <div class="col-sm-6 col-md-6 col-lg-6 content">Send Mail : mahajankiranamhs@gmail.com or call Us : 9685607577 </div>
+     </div>
+     <div class="row" style="border-top: 1px solid black;">
+         <div class="col-6 col-sm-3 col-md-3 col-lg-3 content">Name : {{Customer.Customer}}</div>
+         <div class="col-6 col-sm-3 col-md-3 col-lg-3 content">Date : {{Customer.Date}}</div>
+         <div class="col-6 col-sm-3 col-md-3 col-lg-3 content">Gstin : None</div>
+         <div class="col-6 col-sm-3 col-md-3 col-lg-3 content">Bill no: RPM-{{b_n}}</div>
+     </div>
+     <div class="w3-responsive table mb-0 " >
+        <table class="w3-table-all w3-hoverable" >
+              <thead>
+                <tr style="background-color:rgba(0, 0, 255, 0.123);">
+                  <th class="th">Prdouct Name</th>
+                  <th class="th">No. of kg </th>
+                  <!-- <th class="th">No. of 5kg pack</th>
+                  <th class="th">No. of 15kg pack</th> -->
+                  <th class="th">No. of pcs</th>
+                  <th class="th">Price</th>
+                </tr>
+              </thead>
+                  {% for k,v in allorder.items %}
+                  <tr class="w3-hover-blue" style="background-color:rgba(0, 0, 255, 0.096);" >
+                   <td class="th">{{k}}</td>
+                  {% for j in v %}
+                   <td class="th">{{j}}</td>
+                  {% endfor %}                </tr>
+                  {% endfor %}
+            </table>
+          </div>
+        <div class="row w3-hover-gray th" style="height: 30px; border-bottom: 1px solid black;">
+            <div class="col-9 col-sm-10 col-md-10 col-lg-10 t">Total :</div>
+            <div class="col-3 col-sm-2 col-md-2 col-lg-2" style="border-left: 1px solid black;"><span class="total">{{sum}}</span></div>
+        </div>
+        <div class="row w3-hover-gray th" style="height: 30px; border-bottom: 1px solid black;">
+          <div class="col-9 col-sm-10 col-md-10 col-lg-10 t">Total after Discount of {{dis}} %:</div>
+          <div class="col-3 col-sm-2 col-md-2 col-lg-2" style="border-left: 1px solid black;"><span class="total">{{grand}}</span></div>
+      </div>
+      <div class="free" style="text-align: center; text-decoration: underline;"><strong>Free Items </strong> </div>
+      {% if Customer.Free|length > 0 %}
+      {% for i,j in Customer.Free.items %}
+      <ul style="margin-left: 30px;">
+        <li>{{j}}</li>
+      </ul>
+      {% endfor %}
+      {% else %}
+       <div class="t">No Items</div>
+      {% endif %}
+      <div class="row" style=" border-top: 1px solid black; ">
+            <div class="col-6 col-sm-6 col-lg-6 col-md-6 content">Name  :  {{Customer.Customer}}</div>
+            <div class="col-6 col-sm-6 col-lg-6 col-md-6 content">Email  :  {{Customer.Email}}</div>
+            <div class="col-6 col-sm-6 col-lg-6 col-md-6 content">Address  :  {{Customer.Address}}</div>
+            <div class="col-6 col-sm-6 col-lg-6 col-md-6 content">State  :  {{Customer.State}}</div>
+            <div class="col-6 col-sm-6 col-lg-6 col-md-6 content">City  :  {{Customer.City}}</div>
+            <div class="col-6 col-sm-6 col-lg-6 col-md-6 content">Pin  :  {{Customer.Pin}}</div>
+            <div class="col-6 col-sm-6 col-lg-6 col-md-6 content">Phone : {{Customer.Phone}}</div>
+            <div class="col-6 col-sm-6 col-lg-6 col-md-6 content">Date  :    {{Customer.Date}} </div>
+
+        </div>
+  </div>
+  <div style="color: red;" class="h mt-3 mb-4">After clicking <strong>Done .</strong> Bill will send to your mail ! Please wait for 4-5 seconds. </div>
+ <a href="/login/done"><button class="btn btn-primary btn-lg mt-5 mb-5" type="submit" style="float:right; margin-right:10%;">Done</button></a>
+{% endblock body %}

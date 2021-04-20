@@ -1,0 +1,102 @@
+{% extends "admin/basic.html" %}
+{% block css %}
+ <style>
+   .container{margin-left: 400px;}
+   
+  .services{margin-top: 30px; color: red; font-size: 50px; text-align: center;}
+   @media screen and (max-width: 1200px) {
+       .services{font-size: 30px;}
+       .container{margin-left: 70px;}
+   }
+ </style>
+{% endblock css %}
+{% block title %}Discount {% endblock title%}
+{% block body %}
+<div class="services">Give the Discount ...</div>
+<div class="container mt-5 mb-5">
+    <form action="/Admin/notify/" method="POST"> {% csrf_token %}
+      <div class="form-group">
+        <label for="exampleFormControlInput1">Type :</label>
+        <select name="type" id="inputState" class="form-control">
+        <option>Price Discount on Catagory</option>
+        <option>Price Discount on Product</option>
+        <option>Price Discount on Total</option>
+        <option>Discount on Buying a Product</option>
+      </select>
+      </div>  <hr>
+        <div class="form-group">
+            <label for="inputState">Price Discount on any Category : </label>
+            <select name="cat" id="inputState" class="form-control">
+              <option selected>Choose</option>
+                {% for i in allcat %}
+              <option>{{i}}</option>
+              {% endfor %}
+            </select>
+          </div>  <hr>
+          <div class="form-group">
+            <label for="inputState">Price Discount on any Product : </label>
+            <select name="pro" id="inputState" class="form-control">
+              <option selected>Choose</option>
+                {% for i in allp %}
+              <option>{{i}}</option>
+              {% endfor %}
+            </select>
+          </div>   <hr>
+          <div class="form-group">
+            <label for="inputState">Price Discount on Total Price : </label>
+            <input type="number" name="total" class="form-control" id="exampleFormControlInput1" placeholder="Enter total price">
+          </div> 
+          <div class="form-group">
+            <label for="inputState">Discount : </label>
+            <input type="number" name="discount" class="form-control" id="exampleFormControlInput1" placeholder="Enter Discount in % ">
+          </div>   <hr class="l">
+        <div class="form-group">
+            <label for="exampleFormControlInput1">Discount on buying a product</label>
+            <select name="buy" id="inputState" class="form-control" >
+              <option selected>Choose</option>
+                {% for i in allp %}
+              <option>{{i}}</option>
+              {% endfor %}
+            </select>  
+           </div>
+           <div class="form-group">
+            <label for="inputState">How much quantity of above product : </label>
+            <input type="number" name="how" class="form-control" id="exampleFormControlInput1" placeholder="Enter number of quantity of product">
+          </div>
+          <div class="form-group">
+            <label for="inputState">What will customer get free: </label>
+            <select name="free" id="inputState" class="form-control" >
+              <option selected>Choose</option>
+                {% for i in allp %}
+              <option>{{i}}</option>
+              {% endfor %}
+            </select>            
+          </div>
+          <div class="form-group">
+            <label for="inputState">How much quantity of free product : </label>
+            <input type="number" name="howfree" class="form-control" id="exampleFormControlInput1" placeholder="Enter number of quantity of free product">
+          </div>
+          <hr>
+          <div class="services">Discount description</div>
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Title :</label>
+            <textarea class="form-control" name="title" id="exampleFormControlTextarea1" placeholder="Title of Discount"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Content</label>
+            <textarea class="form-control" name="content" id="exampleFormControlTextarea1" rows="7" placeholder="Write some description about Discount"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="Discoun">Choose the date from which Discount will avialable :
+              <input type="date" name="fromm" >
+            </label>
+          </div>
+          <div class="form-group">
+            <label for="Discoun">Choose the last date upto which Discount is avialable :
+              <input type="date" name="to" >
+            </label>
+          </div>
+        <button class="mt-5 btn btn-primary btn-lg">Give discount</button>
+      </form >
+</div>
+{% endblock body %}

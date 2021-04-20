@@ -1,0 +1,62 @@
+{% extends 'home/basic.html' %}
+{% block title %}Products{% endblock title%}
+
+{% block css %}
+<style>
+.card-c{ width: 80%; height: 450px; margin-left: 15%; border-top-left-radius: 30px; border-top-right-radius: 30px; }
+.t{font-size: 1.3vw; color: gray; font-family:'Times New Roman, Times, serif';}
+.p{font-size: 1.3vw; color: gray ;font-family: 'Times New Roman, Times, serif';}
+.d{font-size: 18px; color: red; font-family: 'Times New Roman, Times, serif';}
+.but{ font-size: 1vw; }
+.image{border-top-left-radius: 30px; border-top-right-radius: 30px; height: 60%; width: 100%;}
+.but:hover{width: 100%;}
+.main{font-size: 2vw; color: orange; margin-top: 10px; background-color: rgba(245, 167, 22, 0.164);}
+@media screen and (max-width: 1000px)
+{  .p{font-size: 1.9vw;}
+  .d{font-size: 13px;}
+.card-c{width: 90%; height: 100%; margin-left: 2%;}
+.t{font-size: 1.9vw;}
+.but{font-size:1.2vw ;}
+.image{height: 60%;}
+}
+@media screen and (max-width: 600px)
+{  .p{font-size: 2.7vw;}
+  .d{font-size: 2.7}
+  .main{font-size: 3.5vw;}
+.card-c{width: 90%; height: 350px; margin-left: 2%;}
+.t{font-size: 2.7vw;}
+.but{font-size:2vw ;}
+.image{height: 50%;}
+}
+</style>
+{% endblock css%}
+
+{% block body %}
+  <div class="main container">These are the our Prodects of category <span style="text-decoration: underline;">{{slug}}</span>
+  Choose your products and click on <strong>Add to cart</strong> to add the Prodects in your shopping bucket..
+  </div>
+<div class="container-fluid" style="margin-top:50px;">
+    <div class="row">
+      {% for i in allp %}
+      <div class="col-6  col-sm-6 col-lg-4 col-md-4 mb-2 mt-2">
+        <div class="card card-c w3-hover-shadow">
+          <img src="/media/{{i.Photo}}" class="card-img-top image" alt={{i.Name}}>
+          <div class="card-body">
+          <p class="card-text t">{{i.Name}}</p>
+           {% if i.Discount > 0 %}
+           <p class="card-text p">Price :<span style="text-decoration: line-through;"> &#x20B9;{{i.Price}} /{{i.Quantity}}</span> . {{i.Discount}}% off </p>
+           <p class="card-text d">Bumper sell !Buy it now</p>
+           {% else %}
+           <p class="card-text p" >Price :&#x20B9;{{i.Price}} /{{i.Quantity}}</p>
+           {% endif %}
+         <a href="/login/product/subcatagory/{{i|cut:' '}}"> <button type="submit" class="btn btn-primary but" style="float: right;">Buy Now !</button></a>
+          </div>
+         </div>
+     </div>
+      {% endfor %}
+    </div>
+  </div> <!--container-->
+
+
+  <div>
+{% endblock body %}

@@ -1,0 +1,99 @@
+{% extends 'admin/basic.html' %}
+{% block title %} Admin {% endblock title %}
+
+{% block css%}
+  <style>
+      .body{background-color: rgba(126, 221, 126, 0.253);}
+   .services{font-size: 80px; text-align: center; color: red; font-family: cursive; text-decoration: underline;}
+    .C{width: 500px; margin-left: 20px; height: 300px;}
+    .change:hover{width:100%}
+    .card-header{font-size: 30px;}
+    .cd{font-size: 30px; font-family: cursive;}
+   @media screen and (max-width:1500px){
+       .services{font-size: 30px;}
+       .cd,.ch{font-size: 20px;}
+       .C{width: 180px; margin-left: 0px; margin-right: 0px; height: 300px;}
+
+   }
+    
+  </style>
+
+{% endblock css%}
+
+{% block search %} <form style="display:flex;">
+  <input class="form-control" type="text" placeholder="Search your product here">
+<button class="btn btn-outline-warning my-2 my-sm-0 " data-toggle="tooltip" data-placement="right" title="Start Searching" type="submit" ><strong>Search</strong></button>
+</form>
+{% endblock search %}
+
+{% block body %}
+<div class="body">
+  <div class="services">Admin Services</div>
+ <div class="row mt-5 mb-5">
+   <div class="col-sm-4 col-lg-4 col-md-4">
+    <div class="card C w3-hover-shadow" style="border-radius: 30px;  ">
+      <div class="card-header ch" style="font-family: cursive; border-top-left-radius: 30px; border-top-right-radius: 30px;">BlockBuster Movies</div>
+      <div class="card-body cd">Change the crousel of BlockBuster Movies .</div>
+      <div class="card-footer"><a href="latest/"><button class="btn btn-primary change" style="float: right;">Change</button></a></div>
+    </div>
+   </div>
+   <div class="col-sm-4 col-lg-4 col-md-4">
+    <div class="card C w3-hover-shadow" style="border-radius: 30px;">
+      <div class="card-header ch" style="font-family: cursive; border-top-left-radius: 30px; border-top-right-radius: 30px;">Latest T.V Serials</div>
+      <div class="card-body cd">Change the crousel of Latest T.V Serials .</div>
+      <div class="card-footer"><a href="latest/"><button class="btn btn-primary change" style="float: right;">Change</button></a></div>
+    </div>
+   </div>
+   <div class="col-sm-4 col-lg-4 col-md-4">
+    <div class="card C w3-hover-shadow" style="border-radius: 30px;">
+      <div class="card-header ch" style="font-family: cursive; border-top-left-radius: 30px; border-top-right-radius: 30px;">Popular Cartoons</div>
+      <div class="card-body cd">Change the crousel of Popular Cartoons</div>
+      <div class="card-footer"><a href="latest/"><button class="btn btn-primary change" style="float: right;">Change</button></a> </div>
+    </div>
+ </div>
+ <div class="col-sm-4 col-lg-4 col-md-4 mt-5">
+  <div class="card C  w3-hover-shadow" style="border-radius: 30px;">
+    <div class="card-header ch" style="font-family: cursive; border-top-left-radius: 30px; border-top-right-radius: 30px;">Our Customers</div>
+    <div class="card-body cd">Click to see all MahajanShoppy.Com Customers</div>
+    <div class="card-footer"><a href="customer/"><button class="btn btn-primary change" style="float: right;">See Customers</button></a> </div>
+  </div>
+</div>
+<div class="col-sm-4 col-lg-4 col-md-4 mt-5">
+  <div class="card C  w3-hover-shadow" style="border-radius: 30px;">
+    <div class="card-header ch" style="font-family: cursive; border-top-left-radius: 30px; border-top-right-radius: 30px;">Upload Catagory</div>
+    <div class="card-body cd">Add a catogry to Website</div>
+    <div class="card-footer"><a href="addc/"><button class="btn btn-primary change" style="float: right;">Upload</button></a> </div>
+  </div>
+</div>
+<div class="col-sm-4 col-lg-4 col-md-4 mt-5">
+  <div class="card C  w3-hover-shadow" style="border-radius: 30px;">
+    <div class="card-header ch" style="font-family: cursive; border-top-left-radius: 30px; border-top-right-radius: 30px;">Add new Product</div>
+    <div class="card-body cd">Add any product to our Shopping Website</div>
+    <div class="card-footer"><a href="addp/"><button class="btn btn-primary change" style="float: right;">Add</button></a> </div>
+  </div>
+</div>
+<div class="col-sm-4 col-lg-4 col-md-4 mt-5">
+  <div class="card C  w3-hover-shadow" style="border-radius: 30px;">
+    <div class="card-header ch" style="font-family: cursive; border-top-left-radius: 30px; border-top-right-radius: 30px;">Delete any Product</div>
+    <div class="card-body cd">Delete The Product From the Website</div>
+    <div class="card-footer"><a href="Delete/"><button class="btn btn-primary change" style="float: right;">Delete</button></a> </div>
+  </div>
+</div>
+<div class="col-sm-4 col-lg-4 col-md-4 mt-5">
+  <div class="card C  w3-hover-shadow" style="border-radius: 30px;">
+    <div class="card-header ch" style="font-family: cursive; border-top-left-radius: 30px; border-top-right-radius: 30px;">Discount</div>
+    <div class="card-body cd">Give Discount to the our Website Products</div>
+    <div class="card-footer"><a href="notify/"><button class="btn btn-primary change" style="float: right;">Go</button></a> </div>
+  </div>
+</div>
+
+<div class="col-sm-4 col-lg-4 col-md-4 mt-5">
+  <div class="card C  w3-hover-shadow" style="border-radius: 30px;">
+    <div class="card-header ch" style="font-family: cursive; border-top-left-radius: 30px; border-top-right-radius: 30px;">Alter any Product</div>
+    <div class="card-body cd">Alter The Product details From the Website</div>
+    <div class="card-footer"><a href="alter/"><button class="btn btn-primary change" style="float: right;">Alter</button></a> </div>
+  </div>
+</div>
+ </div>
+ </div>
+{% endblock body %}

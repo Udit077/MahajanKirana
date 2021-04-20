@@ -1,0 +1,97 @@
+{% extends 'home/basic.html' %}
+{% block title %} {{name}} {% endblock title%}
+{% block css %}
+<style>
+.last{font-size:2vw;}
+.col-form-label{font-size:1.7vw;}
+    .order{text-align: center; font-size: 3vw; color: red; text-decoration: underline; font-family: 'Times New Roman, Times, serif';}
+    .card{ width: 30%; height:70%; margin-left:36%; margin-right:36%; margin-top:20px; border: 8px solid rgba(2, 148, 2, 0.596);}
+    .image{height: 350px; width:100%; border-top-left-radius: 30px; border-top-right-radius: 30px;}
+    .card-text{color: green ; font-size: 2vw; font-family:'Times New Roman, Times, serif';}
+    .enter{font-size: 30px;}
+    .btn1{font-size:1.3vw; margin-left:40%; margin-right:40%; margin-top:2%;}
+    
+    @media screen and (max-width:1000px ){
+        .card{height: 70% ; width: 50%; margin-top: 50px; margin-right:25%; margin-left:25%;}
+    }
+    @media screen and (max-width:900px ){
+        .card{height: 70% ; width: 50%; margin-top: 50px; margin-right:25%; margin-left:25%;}
+    }
+     @media screen and (max-width:600px ){
+         .card-text{font-size:3vw;}
+         .btn1{font-size:2.5vw;}
+         .form-control{width:70%; font-size:2.5vw;}
+         .col-form-label{font-size:2.5vw;}
+         .order{font-size:4vw; margin-top:10px;}
+         .last{font-size:2.9vw;}
+        .card{height: 80% ; width: 70%; margin-top: 30px; margin-right:15%; margin-left:15%; border: 4px solid rgba(2, 148, 2, 0.596);}
+       .image{height: 250px; width:100%;}
+
+     }
+</style>
+{% endblock css%}
+{% block body %}
+<div class="order">Place Your Order Here...</div>
+    <div class="card" style="color: rgba(255, 255, 255, 0.308); border-radius: 30px;">
+        <img src="/media/{{p.Photo}}" class="card-img-top image" alt="...">
+        <div class="card-body" style="background-color:rgba(7, 214, 7, 0.185);">
+          <p class="card-text">Product Name : {{p.Name}}</p>
+          {% if p.Discount > 0 %}
+          <p class="card-text ">Price :<span style="text-decoration: line-through; margin-right: 30px;"> &#x20B9;{{p.Price}} /{{p.Quantity}}</span>  {{p.Discount}}% off</p>
+          <p class="card-text ">Updated Price : &#x20B9;{{p.Dprice}} /{{p.Quantity}}</span></p>
+          <p class="card-text" style="color:green; background-color:rgba(17, 255, 17, 0.637)">Bumper sell !Buy it now</p>
+          {% else %}
+          <p class="card-text" >Price :&#x20B9;{{p.Price}} /{{p.Quantity}}</p>
+          {% endif %}
+
+        </div>
+      </div>
+  <div class="container">
+    <form action="/login/product/subcatagory/{{p.Name|cut:' '}}" method="POST">  {% csrf_token %}
+    {% if p.Quantity != "pcs" %}
+       <!-- <div class="order mt-5" style="color: orange;">Available in 1{{p.Quantity}} , 5{{p.Quantity}} and 15{{p.Quantity}} packs ..</div> -->
+       <div class="order mt-3" style="color:blue">Place Order .. </div>
+       <ul class="mx-2">
+         <li> <div class="form-group row">
+          <label for="inputEmail3" class="col-2 col-sm-4 col-form-label" style="color: red;">No. of kg</label>
+          <div class="col-sm-8 col-10">
+            <input type="number" name="one" class="form-control" id="inputEmail3" value="0" placeholder="How much KG">
+          </div>
+        </div> </li>
+      <!-- <li>  <div class="form-group row">
+          <label for="inputPassword3" class="col-2 col-sm-4 col-form-label" style="color: red;">5{{p.Quantity}}</label>
+          <div class="col-sm-8 col-10">
+            <input type="number" name="two" class="form-control" id="inputPassword3" value="0" placeholder="Enter the quantity of 5{{p.Quantity}} pack">
+          </div>
+        </div></li>
+      <li><div class="form-group row">
+          <label for="inputPassword3" class="col-2 col-sm-4 col-form-label" style="color: red;">15{{p.Quantity}}</label>
+          <div class="col-sm-8 col-10">
+            <input type="number" name="three" class="form-control" id="inputPassword3" value="0" placeholder="Enter the quantity of 15{{p.Quantity}} pack">
+          </div>
+        </div></li> -->
+        </ul>
+        <div class="form-group row">
+            <button type="submit" class="btn btn1 btn-primary">Add to cart</button>
+
+        </div>
+    {% else %}
+
+    <div class="order mt-5" style="color:blue;">Place Order .. </div>
+      <ul class="mx-2">
+        <li> <div class="form-group mt-5 row">
+         <label for="inputEmail3" class="col-2 col-sm-4 col-form-label" style="color: red;">Number of {{p.Quantity}}</label>
+         <div class="col-sm-8 col-10">
+           <input type="number" name="num" class="form-control" id="inputEmail3" placeholder="Enter the number of {{p.Quantity}}">
+         </div>
+       </div> </li>
+       </ul>
+       <div class="form-group row">
+           <button type="submit" class="btn btn1 btn-primary">Add to cart</button>
+          </div>
+     </form>
+     {% endif %}
+
+<div class="mt-5 mb-5 last" style="color:orange;background-color: rgba(255, 255, 0, 0.432);">This item will be added to your MahajanKirana.Com bucket after pressing <strong>Add to Bucket</strong>.Now you can see your Items in <strong <a href="/login/bucket/">Bucket option </a> </strong> and can place final order from there ..  </div>
+</div>
+{% endblock body %}
