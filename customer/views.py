@@ -232,9 +232,15 @@ def done(request) :
     for k,v in a.order.items() :
         tabular_table.add_row([k,v[0],v[1],v[2]])  # making table rows
     item=tabular_table.get_html_string()
-    try :
+    try : 
+                  lower=a.City.lower()
+                  if lower in ["maheshwar","maheshwer","maheswar","maheswer"] :
+                      sorry="Note: Sorry for inconvenience. But currently Our delivery service is not availbale everywhere, It is only available within the Maheshwar region"
+                      receivers_mail = [a.Email]
+                  else :
+                      sorry=""
+                      receivers_mail = [a.Email,"govindamahajangkrpm@gmail.com"]
                   sender_mail = 'mahajankiranamhs@gmail.com'
-                  receivers_mail = [a.Email,"govindamahajangkrpm@gmail.com"]
                    # Html document of bill for sending to user and owner. isme hamne %% isliye lagaya kyoki jb hm %s karke %(item) likh raha tha tn "unsupported format character ';' (0x3b) at index 664 " to hamne sab jagah %% use kiya
                   html1 = """
 <html>
@@ -249,7 +255,7 @@ def done(request) :
             .row{ width: 100%%; margin-left: 1px;}
             .main{margin-left: 80px; width: 90%%;}
             .shri{font-size: 30px; text-align: center; text-decoration: underline; }
-            .name{font-size: 50px; text-align: center; text-decoration: underline; font-family: cursive;}
+            .name{font-size: 50px; text-align: center; text-decoration: underline; font-family:Georgia, 'Times New Roman', Times, serif ;}
             .col-sm-6,.col-sm-7,.col-sm-5,.col-lg-3{font-size: 20px; border-right: 1px solid black;border-bottom: 1px solid black; }
             .total{margin-left: 140px;}
             th{font-size:18px; width:25%%; }
@@ -275,7 +281,7 @@ def done(request) :
             <div class="shri" style="color: blue;">|| श्री गणेशाय नमः ||</div>
             <div class="name mb-3" style="color: blue;">MahajanKirana.Com Bill Reciept</div>
             <div class="row" style="border-top: 1px solid black;">
-                <div class="col-sm-6 col-md-6 col-lg-6">Office Address : Dhan Mandi Tilak Marg,Maheshwar</div>
+                <div class="col-sm-6 col-md-6 col-lg-6">Office Address : Ward no. 3, Dhan Mandi Tilak Marg,Maheshwar Dist-Khargone(M.P)</div>
                 <div class="col-sm-6 col-md-6 col-lg-6">Send Mail :mahajankiranamhs@gmail.com or call Us : 9685607577 </div>
             </div>
             <div class="row" style="border-top: 1px solid black;">
@@ -301,9 +307,10 @@ def done(request) :
                     <div class="col-sm-6 col-lg-6 col-md-6">Date  :    %s </div>
             </div>
         </div>
+        <div style="color: red; margin-top:3; margin-bottom : 4; text-align:left" class="name">%s</div>
     </body>
 </html>
-"""%(a.Customer, str(a.Date), str(b.bill_no), item, total, a.Customer, a.Email, a.Address, a.City, a.State, str(a.Pin), str(a.Phone), str(a.Date) )
+"""%(a.Customer, str(a.Date), str(b.bill_no), item, total, a.Customer, a.Email, a.Address, a.City, a.State, str(a.Pin), str(a.Phone), str(a.Date), str(sorry) )
                   for i in receivers_mail :
                         msg = MIMEMultipart()
                         msg['From'] = "MahajanKirana.Com"
@@ -322,7 +329,7 @@ def done(request) :
                   messages.success(request,"Your Order will reach to your home within 1 day..")
                   return redirect("/login")
     except Exception as e :
-             messages.error(request,"can't send the bill ! please try again")
+             messages.error(request,"Can't send the bill ! please try again")
              return redirect("/login")
 
 # ------------------------------------------Uploading the list -----------------------------------------#
@@ -345,7 +352,7 @@ def upload(request) :
             messages.warning(request,"Incorrect details, Please fill it again ... ")
             return redirect("/login/upload")
     else :
-        return render(request,"home/upload.html",{"total":notif(request),"allcat":allcat, "param":link(),"total":len(notif()),"sab":sab,"us":request.user,"no_order":no_order(request.user)})
+        return render(request,"home/upload.html",{"total":notif(request),"allcat":allcat, "param":link(),"sab":sab,"us":request.user,"no_order":no_order(request.user)})
 
 # -----------------------------------------------tv----------------------------------------------------#
 
@@ -353,13 +360,13 @@ def tv(request,video) :
         allcat=Category.objects.all()
         discount(request)
         if video=="0" :
-            return render(request, "home/tv.html",{"leng":video, "video":video,"total":notif(),"allcat":allcat, "param":link(),"total":len(notif()),"sab":sab,"us":request.user,"no_order":no_order(request.user)})
+            return render(request, "home/tv.html",{"leng":video, "video":video,"total":notif(request),"allcat":allcat, "param":link(),"sab":sab,"us":request.user,"no_order":no_order(request.user)})
         if request.method=="POST" :
                 video=request.POST.get("yousearch","comedy").replace(" ","")
         html = urllib.request.urlopen(f"https://www.youtube.com/results?search_query={video}")
         video_ids = re.findall(r"watch\?v=(\S{11})", html.read().decode())
         messages.success(request,"please wait for a moment untill all youtube videos get loaded...")
-        return render(request, "home/tv.html",{"video":video,"vid":video_ids,"leng":video_ids,"total":notif(),"allcat":allcat, "param":link(),"total":len(notif()),"sab":sab,"us":request.user,"no_order":no_order(request.user)})
+        return render(request, "home/tv.html",{"video":video,"vid":video_ids,"leng":video_ids,"total":notif(request),"allcat":allcat, "param":link(),"sab":sab,"us":request.user,"no_order":no_order(request.user)})
 
 #--------------------------------------------product or category--------------------------------------------------#
 def link():    # create a dict then sari category le raha h fir uss category se related product le k dict bana raha
