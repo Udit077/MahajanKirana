@@ -232,14 +232,14 @@ def done(request) :
     for k,v in a.order.items() :
         tabular_table.add_row([k,v[0],v[1],v[2]])  # making table rows
     item=tabular_table.get_html_string()
-    try : 
+    try :
                   lower=a.City.lower()
                   if lower in ["maheshwar","maheshwer","maheswar","maheswer"] :
-                      sorry="Note: Sorry for inconvenience. But currently Our delivery service is not availbale everywhere, It is only available within the Maheshwar region"
-                      receivers_mail = [a.Email]
-                  else :
                       sorry=""
-                      receivers_mail = [a.Email,"govindamahajangkrpm@gmail.com"]
+                      receivers_mail = [a.Email, "govindamahajangkrpm@gmail.com"]
+                  else :
+                      sorry="Note: Sorry for inconvenience. But currently Our delivery service is not available everywhere, It is only available within the Maheshwar region"
+                      receivers_mail = [a.Email]
                   sender_mail = 'mahajankiranamhs@gmail.com'
                    # Html document of bill for sending to user and owner. isme hamne %% isliye lagaya kyoki jb hm %s karke %(item) likh raha tha tn "unsupported format character ';' (0x3b) at index 664 " to hamne sab jagah %% use kiya
                   html1 = """
@@ -263,14 +263,14 @@ def done(request) :
             td{font-size:18px;}
             tr{background-color:rgba(0, 0, 255, 0.123);}
             .total{font-size:18px}
-            @media screen  and (max-width: 1200px){
+            @media screen  and (max-width: 600px){
             table{  margin-left:0px;}
             .main{margin-left: 0px; width:100%% ;}
-            .shri{font-size: 15px; }
-            .name{font-size: 20px;}
-            .col-sm-6,.col-sm-7,.col-sm-5,.col-lg-3,.th{font-size:12px; }
-            .total{font-size: 15px;}
-            th,td{border-bottom:1px solid black; font-size:2vw; border-left:1px solid black;}
+            .shri{font-size: 2.8vw; }
+            .name{font-size: 2.8vw;}
+            .col-sm-6,.col-sm-7,.col-sm-5,.col-lg-3{font-size:10px; }
+            .total{font-size: 2vw;}
+            th,td{border-bottom:1px solid black; font-size:2.4vw; border-left:1px solid black;}
              }
         </style>
     </head>
@@ -281,14 +281,14 @@ def done(request) :
             <div class="shri" style="color: blue;">|| श्री गणेशाय नमः ||</div>
             <div class="name mb-3" style="color: blue;">MahajanKirana.Com Bill Reciept</div>
             <div class="row" style="border-top: 1px solid black;">
-                <div class="col-sm-6 col-md-6 col-lg-6">Office Address : Ward no. 3, Dhan Mandi Tilak Marg,Maheshwar Dist-Khargone(M.P)</div>
+                <div class="col-sm-6 col-md-6 col-lg-6">Address : Ward no. 3, Bhagat Singh Marg, Maheshwar Dist-Khargone(M.P)</div>
                 <div class="col-sm-6 col-md-6 col-lg-6">Send Mail :mahajankiranamhs@gmail.com or call Us : 9685607577 </div>
             </div>
             <div class="row" style="border-top: 1px solid black;">
-                <div class="col-sm-3 col-md-3 col-lg-3">Name : %s</div>
-                <div class="col-sm-3 col-md-3 col-lg-3">Date : %s</div>
-                <div class="col-sm-3 col-md-3 col-lg-3">Gstin : None</div>
-                <div class="col-sm-3 col-md-3 col-lg-3">Bill no: RPM-%s</div>
+                <div class="col-sm-3 col-md-3 col-lg-3 col-xs-6">Name : %s</div>
+                <div class="col-sm-3 col-md-3 col-lg-3 col-xs-6">Date : %s</div>
+                <div class="col-sm-3 col-md-3 col-lg-3 col-xs-6">Gstin : None</div>
+                <div class="col-sm-3 col-md-3 col-lg-3 col-xs-6">Bill no: RPM-%s</div>
             </div>
             <div class="w3-responsive table mb-0 " >
                    %s
@@ -297,17 +297,17 @@ def done(request) :
                     <div class="col-sm-10 col-md-10 col-lg-10 total">Total : %d</div>
             </div>
             <div class="row" ">
-                    <div class="col-sm-6 col-lg-6 col-md-6">Name  :  %s</div>
-                    <div class="col-sm-6 col-lg-6 col-md-6">Email  :  %s</div>
-                    <div class="col-sm-6 col-lg-6 col-md-6">Address  :  %s</div>
-                    <div class="col-sm-6 col-lg-6 col-md-6">City  :  %s</div>
-                    <div class="col-sm-6 col-lg-6 col-md-6">State  :  %s</div>
-                    <div class="col-sm-6 col-lg-6 col-md-6">Pin  :  %s</div>
-                    <div class="col-sm-6 col-lg-6 col-md-6">Phone : %s</div>
-                    <div class="col-sm-6 col-lg-6 col-md-6">Date  :    %s </div>
+                    <div class="col-sm-6 col-lg-6 col-md-6 ">Name  :  %s</div>
+                    <div class="col-sm-6 col-lg-6 col-md-6 ">Email  :  %s</div>
+                    <div class="col-sm-6 col-lg-6 col-md-6 col-xs-6">Address  :  %s</div>
+                    <div class="col-sm-6 col-lg-6 col-md-6 col-xs-6">City  :  %s</div>
+                    <div class="col-sm-6 col-lg-6 col-md-6 col-xs-6">State  :  %s</div>
+                    <div class="col-sm-6 col-lg-6 col-md-6 col-xs-6">Pin  :  %s</div>
+                    <div class="col-sm-6 col-lg-6 col-md-6 col-xs-6">Phone : %s</div>
+                    <div class="col-sm-6 col-lg-6 col-md-6 col-xs-6">Date  :    %s </div>
             </div>
         </div>
-        <div style="color: red; margin-top:3; margin-bottom : 4; text-align:left" class="name">%s</div>
+        <div style="color: red; margin-top:3; margin-bottom : 4; text-align:left; font-size:2vw;" class="name">%s</div>
     </body>
 </html>
 """%(a.Customer, str(a.Date), str(b.bill_no), item, total, a.Customer, a.Email, a.Address, a.City, a.State, str(a.Pin), str(a.Phone), str(a.Date), str(sorry) )
@@ -476,7 +476,7 @@ def discount(requeset) :
 #     for k,v in a.order.items() :
 #         tabular_table.add_row([k,v[0],v[1],v[2],v[3],v[4]])  # making table rows
 #     item=tabular_table.get_html_string()
-        
+
 # नमस्ते महाजन किराना में आप सभी का स्वागत है| हमारी इस साइट पर कई प्रकार के सामान उपलब्ध  है जिसकी शुद्धता की 100% ग्यारंटी आपको मिलती है. इस साइट पर आप घर बैठे-बैठे आप अपना ऑर्डर दे सकते हैं और ऑर्डर देने के बाद Email पर जाकर अपना बिल देख सकते हैं. महाजन किराना पर आपको  कुछ ही समय में आपके ऑर्डर की फ्री  delivery की सुविधा उपलब्ध है
 # यदि साइट पर कोई सा प्रोडक्ट उपलब्ध नहीं है तो आप उसकी एक अलग से लिस्ट बनाकर या चाहे तो सारे सामान की लिस्ट बनाकर " Upload List " पर अपनी लिस्ट आसानी से uplaod कर सकते हैं .
 # किसी भी सामान की थोक की खरीदी पर delivery के समय बिल में विशेष छुट दी जाएगी |
