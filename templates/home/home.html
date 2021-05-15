@@ -2,7 +2,7 @@
 
 {% block css %}
 <style>
-
+.crousel{width:100%; height: 35vw;} 
   .blockbuster{color: red; font-size: 50px; text-decoration: underline; font-family: cursive; text-align: center;}
 .blockbuster:hover{color: yellow; }
 .dis{color:green; font-size: 30px; margin-top:10px; font-family: Georgia, 'Times New Roman', Times, serif; background-color: rgba(0, 128, 0, 0.233);}
@@ -15,7 +15,7 @@
   color: green;
   font-size: 30px;
 }
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1000px) { 
   .card-c{width: 80%; height: 450px; margin-left: 5%; margin-bottom: 10%;}
 .t{font-size: 2.6vw;}
 .but{font-size:2vw ;}
@@ -24,7 +24,7 @@
 @media screen and (max-width: 600px)
 { .blockbuster{font-size: 30px;}
 .dis{font-size: 20px;}
-.card-c{width: 80%; height: 300px; margin-left: 1%; margin-bottom: 10%;}
+.card-c{width: 80%; height: 300px; margin-left: 5%; margin-bottom: 10%;}
 .t{font-size: 2.6vw;}
 .but{font-size:2.5vw ;}
 .image{height: 60%;}
@@ -32,7 +32,7 @@
 @media screen and (max-width: 500px) {
     .dis{font-size:15px;}
     .t{font-size: 3.5vw;}
-    .card-c{width: 100%; height: 300px; margin-left: 1%; margin-bottom: 10%;}
+    .card-c{width: 100%; height: 300px; margin-left: 5%; margin-bottom: 10%;}
 
 }
 </style>
@@ -43,7 +43,7 @@
 {% block body %}
 
     <div class="blockbuster">Today's Blockbuster</div>
-        <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-ride="carousel">
+        <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-ride="carousel" data-aos="flip-up" data-aos-duration="1000" data-aos-easing="linear">
             <ol class="carousel-indicators" id="desh">
               <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
               <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
@@ -53,11 +53,11 @@
 
             </ol>
             <div class="carousel-inner">
-              <div class="carousel-item active">
+              <div class="carousel-item active crousel">
                     {% for i in Blockbuster %}
                          <a href="tv/{{i.Search|cut:' '}}"><img src="/media/{{i.Image}}" class="d-block w-100" alt="..."></a>
                          {%  if not forloop.last %}
-                       </div><div class="carousel-item">
+                       </div><div class="carousel-item crousel">
                          {% endif %}
                    {% endfor %}
             </div>
@@ -73,7 +73,7 @@
   </div>
 
   <div class="blockbuster">Latest TV Serials</div>
-  <div id="carouselExampleCaptions1" class="carousel slide carousel-fade" data-ride="carousel">
+  <div id="carouselExampleCaptions1" class="carousel slide carousel-fade" data-ride="carousel" data-aos="flip-up" data-aos-duration="1000" data-aos-easing="linear">
     <ol class="carousel-indicators" id="desh">
       <li data-target="#carouselExampleCaptions1" data-slide-to="0" class="active"></li>
       <li data-target="#carouselExampleCaptions1" data-slide-to="1"></li>
@@ -82,11 +82,11 @@
       <li data-target="#carouselExampleCaptions1" data-slide-to="4"></li>
     </ol>
     <div class="carousel-inner">
-      <div class="carousel-item active">
+      <div class="carousel-item active crousel">
             {% for i in latest %}
                  <a href="tv/{{i.Search|cut:' '}}"><img src="/media/{{i.Image}}" class="d-block w-100" alt="..."></a>
               {%  if not forloop.last %}
-               </div><div class="carousel-item">
+               </div><div class="carousel-item crousel">
                  {% endif %}
            {% endfor %}
     </div>
@@ -102,7 +102,7 @@
 </div>
 
 <div class="blockbuster">Best Cartoon forever</div>
-  <div id="carouselExampleCaptions2" class="carousel slide carousel-fade" data-ride="carousel">
+  <div id="carouselExampleCaptions2" class="carousel slide carousel-fade" data-ride="carousel" data-aos="flip-up" data-aos-duration="1000" data-aos-easing="linear">
     <ol class="carousel-indicators" id="desh">
       <li data-target="#carouselExampleCaptions2" data-slide-to="0" class="active"></li>
       <li data-target="#carouselExampleCaptions2" data-slide-to="1"></li>
@@ -111,11 +111,11 @@
       <li data-target="#carouselExampleCaptions2" data-slide-to="4"></li>
     </ol>
     <div class="carousel-inner">
-       <div class="carousel-item active">
+       <div class="carousel-item active crousel">
              {% for i in cartoon %}
                   <a href="tv/{{i.Search|cut:' '}}"><img src="/media/{{i.Image}}"  class="d-block w-100" alt="..."></a>
                {%  if not forloop.last %}
-                </div><div class="carousel-item">
+                </div><div class="carousel-item crousel">
                   {% endif %}
             {% endfor %}
      </div>
@@ -131,7 +131,7 @@
 </div>
 
 <div class="blockbuster">Live Sports</div>
-  <div id="carouselExampleCaptions3" class="carousel slide carousel-fade" data-ride="carousel">
+  <div id="carouselExampleCaptions3" class="carousel slide carousel-fade" data-ride="carousel" data-aos="flip-up" data-aos-duration="1000" data-aos-easing="linear">
     <ol class="carousel-indicators" id="desh">
       <li data-target="#carouselExampleCaptions3" data-slide-to="0" class="active"></li>
       <li data-target="#carouselExampleCaptions3" data-slide-to="1"></li>
@@ -140,11 +140,11 @@
       <li data-target="#carouselExampleCaptions3" data-slide-to="4"></li>
     </ol>
     <div class="carousel-inner">
-       <div class="carousel-item active">
+       <div class="carousel-item active crousel">
              {% for i in sports %}
                   <a href="tv/{{i.Search|cut:' '}}"><img src="/media/{{i.Image}}" class="d-block w-100" alt="..."></a>
                {%  if not forloop.last %}
-                </div><div class="carousel-item">
+                </div><div class="carousel-item crousel">
                   {% endif %}
             {% endfor %}
      </div>
@@ -160,13 +160,13 @@
 </div>
 
 <div class="blockbuster">Our Products : </div>
-<div class="container dis">MahajanKirana.Com is an online shopping site which provides you a wide range of grocery Products that you can buy at very less price and we are giving are facilities like <strong>Cash on dilivery , 100 % guarrantee of the purity of product and you can also return the product if you are not satisfied .</strong> These are our various prodects of grocery : </div>
+<div class="container dis" data-aos="zoom-in-down" data-aos-duration="1000">MahajanKirana.Com is an online shopping site which provides you a wide range of grocery Products that you can buy at very less price and we are giving are facilities like <strong>Cash on dilivery , 100 % guarrantee of the purity of product and you can also return the product if you are not satisfied .</strong> These are our various prodects of grocery : </div>
 </div>
 
 <div class="container-fluid" style="margin-top:50px;">
   <div class="row">
     {% for i in allcat %}
-      <div class="col-6  col-sm-6 col-lg-4 col-md-4 mb-2 mt-2">
+      <div class="col-6  col-sm-6 col-lg-4 col-md-4 mb-2 mt-2" data-aos="zoom-in" data-aos-duration="1000" data-aos-easing="linear">
     <div class="card card-c w3-hover-shadow">
       <img src="/media/{{i.Photo}}" class="card-img-top image" alt="...">
       <div class="card-body">
