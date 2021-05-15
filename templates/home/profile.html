@@ -18,7 +18,7 @@
 {% block body %}
 <div class="services"><strong>Change your Details Here..</strong> </div>
 <div class="container mt-5">
-    <form action="/login/profile/" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+    <form action="/login/profile/" method="POST" enctype="multipart/form-data" data-aos="flip-right" data-aos-duration="3000"> {% csrf_token %}
         <div class="form-group">
             <label for="exampleFormControlInput1">Username :</label>
             <input type="text" name="username" class="form-control inputline" id="exampleFormControlInput1" value="{{userrr.username}}">
