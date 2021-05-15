@@ -14,7 +14,7 @@
 {% block body %}
 <div class="Upload">Upload a scanned copy of your List of Items Here.....</div>
 <div class="container mt-5">
-<form action="/login/upload/" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+<form action="/login/upload/" method="POST" enctype="multipart/form-data" data-aos="flip-right" data-aos-duration="3000"> {% csrf_token %}
     <div class="form-group row">
         <label for="colFormLabel" class="col-sm-3 col-form-label">Name :</label>
         <div class="col-sm-9">
