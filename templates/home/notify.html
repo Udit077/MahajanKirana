@@ -27,7 +27,11 @@
         {% if forloop.counter0 == len %}
         <div class="noti mt-4" style="color: orange;">Old</div>
         {% endif %}
-        <div class="card mt-5">
+        {% if forloop.counter|divisibleby:2 %}
+        <div class="card mt-5" data-aos="fade-down-right" data-aos-duration="1500" data-aos-easing="ease-in-sine">
+        {% else %}
+        <div class="card mt-5" data-aos="fade-down-left" data-aos-duration="1500" data-aos-easing="ease-in-sine">
+        {% endif %}
           <div class="card-header tit" >{{i.Title}}</div>
           <div class="card-body" >
             <h5 class="card-title con" style="color: blue">{{i.Content}}</h5>
